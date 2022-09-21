@@ -1,26 +1,18 @@
 .navbar-main{
-    width: 100vw;
-
-   display: flex;
-   justify-content: center;
-}
-.margen{
-    display: flex; 
-    justify-content: space-around;
-    width: 80vw;
-    height: 10vh;
-}
-.navbar{
+    min-height: 100vh;
     font-family: var(--font-navbar);
-    color: var(--color-nav_text);
-    width: 70vw;
-    height: 8vh;
-    display: flex;
-   align-items: center;
-    gap: 20px;
-    justify-content: center;
-    font-size: 1.5rem;
+    position: relative;
 }
+.btn{
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    z-index: 2;
+    display: flex;
+    width: 20px;
+    height: 20px;
+}
+
 .navbar-item{
     cursor: pointer;
 }
@@ -28,6 +20,37 @@
     width: 60px;
     height: 60px;
     animation: zoom 1s ease-in-out infinite;
+}
+.play-btn, .pause-btn{
+   
+    width: 20px;
+    height: 20px;
+}
+
+.menu{
+    background-color: #171717;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 100px;
+    z-index: 1;
+    transition: .3s;
+}
+
+.navbar-item:not(:last-child){
+margin-bottom: 30px;
+}
+.navbar-item{
+    position: relative;
+  
+    font-weight: bold;
+    font-size: 2.5em;
+    color: var(--color-navbar);
 }
 
 @keyframes zoom{
