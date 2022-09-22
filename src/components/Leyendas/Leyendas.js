@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Leyendas = () => {
-    return ( <p>hola</p> );
+    return ( <p>leyendas</p> );
 }
  
 export default Leyendas;
