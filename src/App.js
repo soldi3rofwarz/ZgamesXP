@@ -2,7 +2,7 @@ import './App.css';
 import Navbar from './components/Header/navbar';
 import {Routes,Route} from 'react-router-dom'
 import Home from './components/home/Home'
-import Leyendas from './components/Leyendas/Leyendas'
+import Leyendas from './components/Leyendas/Leyendas';
 import Bocetos from './components/bocetos/bocetos'
 import About from './components/About/About'
 

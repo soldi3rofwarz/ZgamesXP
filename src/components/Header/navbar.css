@@ -1,5 +1,4 @@
 .navbar-main{
-    min-height: 100vh;
     font-family: var(--font-navbar);
     position: relative;
 }
@@ -7,7 +6,7 @@
     position: absolute;
     top: 5px;
     right: 25px;
-    z-index: 2;
+    z-index: 10;
     display: flex;
     width: 20px;
     height: 20px;
@@ -39,7 +38,6 @@
 .menu{
     background-color: #171717;
     display: flex;
-   
     align-items: center;
     justify-content: flex-start;
     position: fixed;
@@ -48,14 +46,16 @@
     right: 0;
     bottom: 0;
     padding: 100px;
-    z-index: 1;
+    z-index: 9;
     transition: 1s;
     opacity:0;
     visibility: hidden;
+    height: 0vh;
 }
 .menu.is-active{
     opacity:1;
     visibility: visible;
+    height: 100vh;
 }
 .menu-list{
     flex-direction: column;
