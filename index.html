@@ -8,6 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Z-Games Experience</title>
+    <link rel="stylesheet" href="/css/stylelogin.scss">
+
+    
     <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -42,6 +45,7 @@
 </head>
 
 <body>
+    
     <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TM5Q98W"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -74,6 +78,15 @@
                                     </ul>
                                 </li>
                                 <li><a href="./contact.html">Contacto</a></li>
+
+                                <li ><div class="google-btn">
+                                    
+                                    <div class="google-icon-wrapper" id="login"  style="display:flex; justify-content: center;flex-direction:column; cursor: pointer;">
+                                      <img class="google-icon" id="foto" style="width: 40px; height:40px; border-radius: 50%;margin-left: 25%;" onclick="logout" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" >
+                                        <div id="textoz" style="color: white;">iniciar sesion</div>
+                                    </div>
+                                  </div>
+                                </li>
                             </ul>
                         </nav>
                         <div class="header__nav__social">
@@ -513,10 +526,12 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
     <!-- firebase-->
+ 
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider,signInWithRedirect,getRedirectResult,signOut } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
       
@@ -528,13 +543,57 @@
           projectId: "zgamesweb",
           storageBucket: "zgamesweb.appspot.com",
           messagingSenderId: "523626791231",
-          appId: "1:523626791231:web:24eff69a11c4d78fbdd38a",
-          measurementId: "G-ZQ0XMHM65P"
+          appId: "1:523626791231:web:ccf62e9edace324dbdd38a",
+          measurementId: "G-67Y5N0YK75"
         };
       
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider(app);
+
+        
+            document.getElementById("login").addEventListener('click',(e)=>{
+                signInWithPopup(auth, provider)
+                .then((result) => {
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+                    const credential = GoogleAuthProvider.credentialFromResult(result);
+                    const token = credential.accessToken;
+                    // The signed-in user info.
+                    var user = result.user;
+                   
+                    document.getElementById("login").id="logout"
+                    console.log("iniciado")
+                    document.getElementById("foto").src=(user.photoURL);
+                    document.getElementById("textoz").innerHTML= "cerrar sesion"
+                    console.log(user)
+                    // ...
+                }).catch((error) => {
+                    
+                    // Handle Errors here.
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    // The email of the user's account used.
+                    const email = error.customData.email;
+                    // The AuthCredential type that was used.
+                    const credential = GoogleAuthProvider.credentialFromError(error);
+                    // ...
+                });
+        })
+       
+        document.getElementById("logout").addEventListener('click',(e)=>{
+            signOut(auth).then(() => {
+                document.getElementById("login").id="login"
+                    document.getElementById("foto").src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg";
+                    document.getElementById("textoz").innerHTML= "iniciar sesion"
+            // Sign-out successful.
+            console.log("cerrado")
+                }).catch((error) => {
+            // An error happened.
+            });
+        })
+        
       </script>
 </body>
 
